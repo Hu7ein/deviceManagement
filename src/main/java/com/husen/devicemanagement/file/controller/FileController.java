@@ -21,9 +21,6 @@ public class FileController {
         this.fileService = fileService;
     }
 
-    /**
-     * STEP 1: Generate upload URL (mocked for now)
-     */
     @PreAuthorize("hasAuthority('DEVICE_UPDATE')")
     @PostMapping("/upload-url")
     public ResponseEntity<FileUploadResponse> generateUploadUrl(
@@ -35,9 +32,7 @@ public class FileController {
         );
     }
 
-    /**
-     * STEP 2: List files for device
-     */
+
     @PreAuthorize("hasAuthority('DEVICE_READ')")
     @GetMapping
     public ResponseEntity<List<FileResponse>> listFiles(@PathVariable Long deviceId) {
