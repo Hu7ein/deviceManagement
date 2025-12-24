@@ -18,7 +18,6 @@ import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 @Service
 public class FileServiceImpl implements FileService {
@@ -50,7 +49,7 @@ public class FileServiceImpl implements FileService {
         file.setFileType(request.getFileType());
         file.setUploadStatus("PENDING");
         file.setStorageProvider("S3");
-        file.setCreatedAt(LocalDateTime.now());
+        file.setUploadedAt(LocalDateTime.now());
         file.setDevice(device);
 
         fileRepository.save(file);
@@ -96,6 +95,23 @@ public class FileServiceImpl implements FileService {
                 ))
                 .toList();
     }
+
+    @Override
+    public void markUploadCompleted(Long fileId, Long size, String bucket, String key) {
+
+        FileMetaData file = fileRepository.findById(fileId)
+                .orElseThrow(() -> new IllegalArgumentException("File not found"));
+
+        file.setUploadStatus("COMPLETED");
+        file.setSize(size);
+        file.setStorageProvider("S3");
+        file.setStorageKey(key);
+        file.setUploadedAt(LocalDateTime.now());
+        file.setUpdatedAt(LocalDateTime.now());
+
+        fileRepository.save(file);
+    }
+
 }
 
 

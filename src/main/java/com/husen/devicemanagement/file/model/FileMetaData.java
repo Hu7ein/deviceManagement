@@ -24,7 +24,7 @@ public class FileMetaData {
     private String storageKey;         // s3 object key
     private String uploadStatus;       // PENDING / COMPLETED / FAILED
 
-    private LocalDateTime createdAt;
+    private LocalDateTime uploadedAt;
     private LocalDateTime updatedAt;
 
     @ManyToOne(fetch = FetchType.LAZY)

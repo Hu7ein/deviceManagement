@@ -11,4 +11,6 @@ public interface FileService {
     FileUploadResponse generateUploadUrl(Long deviceId, FileUploadRequest request);
 
     List<FileResponse> getFilesForDevice(Long deviceId);
+
+    void markUploadCompleted(Long fileId, Long size, String bucket, String key);
 }
