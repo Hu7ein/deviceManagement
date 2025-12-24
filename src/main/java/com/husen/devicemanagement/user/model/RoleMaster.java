@@ -19,15 +19,20 @@ public class RoleMaster {
     private String name;
 
     @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "roles_permissions",
+            joinColumns = @JoinColumn(name = "role_id"),
+            inverseJoinColumns = @JoinColumn(name = "permission_id")
+    )
     private Set<PermissionMaster> permissions = new HashSet<>();
 
-    protected RoleMaster() {
+    @ManyToMany(mappedBy = "roles")
+    private Set<UserMaster> users = new HashSet<>();
 
-    }
+    protected RoleMaster() {}
 
     public RoleMaster(String name, Set<PermissionMaster> permissions) {
         this.name = name;
         this.permissions = permissions;
     }
 }
-

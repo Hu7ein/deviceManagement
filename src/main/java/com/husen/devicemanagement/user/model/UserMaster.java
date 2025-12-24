@@ -22,16 +22,20 @@ public class UserMaster {
     private String password;
 
     @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "users_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
     private Set<RoleMaster> roles = new HashSet<>();
+
+    protected UserMaster() {}
 
     public UserMaster(String userName, String password, Set<RoleMaster> roles) {
         this.userName = userName;
         this.password = password;
         this.roles = roles;
     }
-
-    protected UserMaster() {
-    }
-
 }
+
 
