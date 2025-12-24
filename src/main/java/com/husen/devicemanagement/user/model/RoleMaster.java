@@ -20,7 +20,7 @@ public class RoleMaster {
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
-            name = "roles_permissions",
+            name = "role_permissions",
             joinColumns = @JoinColumn(name = "role_id"),
             inverseJoinColumns = @JoinColumn(name = "permission_id")
     )
