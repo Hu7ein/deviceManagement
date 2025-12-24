@@ -8,6 +8,7 @@ import java.util.Set;
 
 @Entity
 @Data
+@Table(name = "roles")
 public class RoleMaster {
 
     @Id
