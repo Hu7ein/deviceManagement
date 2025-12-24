@@ -5,6 +5,7 @@ import lombok.Data;
 
 @Entity
 @Data
+@Table(name = "permissions")
 public class PermissionMaster {
 
     @Id
