@@ -5,6 +5,7 @@ import lombok.Data;
 
 import java.util.HashSet;
 import java.util.Set;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Data
@@ -26,13 +27,6 @@ public class RoleMaster {
     )
     private Set<PermissionMaster> permissions = new HashSet<>();
 
-    @ManyToMany(mappedBy = "roles")
-    private Set<UserMaster> users = new HashSet<>();
-
     protected RoleMaster() {}
-
-    public RoleMaster(String name, Set<PermissionMaster> permissions) {
-        this.name = name;
-        this.permissions = permissions;
-    }
 }
+
